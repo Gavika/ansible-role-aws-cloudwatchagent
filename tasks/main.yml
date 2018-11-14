@@ -1,2 +1,41 @@
 ---
-# tasks file for ansible-role-aws-cloudwatchagent
+# Prerequisites. Attach role to EC2 instance with cloudwatch permission to
+# Support Ubuntu, Debian, CentOS, Amazon Linux 2
+- name: Directory to store downloaded CloudWatchAgent binary package
+  file:
+    path: "{{ cloudwatch_agent_username }}/downloads/"
+    state: directory
+    owner: "{{ cloudwatch_agent_username }}"
+    group: "{{ cloudwatch_agent_username }}"
+
+- name: Determine downlod URL based on Linux distribution
+  set_fact:
+    cloudwatch_agent_download_url: https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+  when: ansible_distribution == 'Ubuntu'
+
+# Do this based on operating system
+- name: Download CloudWatchAgent
+  get_url:
+    url: "{{ cloudwatch_agent_download_url }}"
+    remote_src: true
+    dest: "{{ cloudwatch_agent_download_directory }}"
+    owner: "{{ cloudwatch_agent_username }}"
+    group: "{{ cloudwatch_agent_username }}"
+
+- name: Install the package
+  apt:
+    deb: "{{ cloudwatch_agent_download_directory}}/amazon-cloudwatch-agent.deb"
+  when: ansible_distribution == 'Ubuntu'
+
+
+- name: CloudWatchAgent configuration
+  template:
+    src: cloudwatch.conf.json
+    dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
+
+- name: Start the CloudWatchAgent
+  command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
+  args:
+    creates: /opt/aws/.ansible-creates-start-CloudWatchAgent
+  notify:
+    - creates start CloudWatchAgent

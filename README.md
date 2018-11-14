@@ -15,7 +15,11 @@ Requirements
 Role Variables
 --------------
 
-TBD
+
+| Variable | Default Value | Description | Required? |
+|----------|---------------|---------|-----------|
+| cloudwatch_agent_username |  | The administrative user that should be the owner of the downloaded files. Typically same as remote_user. On Ubuntu it maybe ubuntu and CentOS it may be centos and Amazon Linux it may be ec2-user. | Yes |
+| cloudwatch_agent_download_directory | | The location where the AWS CloudWatch Agent software has to be downloaded to.| Yes |
 
 Dependencies
 ------------

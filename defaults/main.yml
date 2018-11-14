@@ -1,2 +1,4 @@
 ---
-# defaults file for ansible-role-aws-cloudwatchagent
+cloudwatch_agent_username:
+cloudwatch_agent_download_url:
+cloudwatch_agent_download_directory:
