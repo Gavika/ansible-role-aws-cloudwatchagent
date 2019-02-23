@@ -27,10 +27,9 @@
     deb: "{{ cloudwatch_agent_download_directory}}/amazon-cloudwatch-agent.deb"
   when: ansible_distribution == 'Ubuntu'
 
-
 - name: CloudWatchAgent configuration
   template:
-    src: cloudwatch.conf.json
+    src: opt/aws/amazon-cloudwatch-agent/bin/cloudwatch.conf.json
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
 
 - name: Start the CloudWatchAgent
