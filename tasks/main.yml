@@ -3,7 +3,7 @@
 # Support Ubuntu, Debian, CentOS, Amazon Linux 2
 - name: Directory to store downloaded CloudWatchAgent binary package
   file:
-    path: "{{ cloudwatch_agent_username }}/downloads/"
+    path: "{{ cloudwatch_agent_download_directory }}"
     state: directory
     owner: "{{ cloudwatch_agent_username }}"
     group: "{{ cloudwatch_agent_username }}"
@@ -29,7 +29,8 @@
 
 - name: CloudWatchAgent configuration
   template:
-    src: opt/aws/amazon-cloudwatch-agent/bin/cloudwatch.conf.json
+    # src: opt/aws/amazon-cloudwatch-agent/bin/cloudwatch.conf.json
+    src: aws-cw-config.json
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
 
 - name: Start the CloudWatchAgent
