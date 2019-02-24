@@ -2,9 +2,8 @@ Warning
 ==========
 This is a work-in-progress alpha stage role.
 
-Role Name
+Ansible Role CloudWatch Agent
 =========
-
 This Ansible role installs and configures AWS CloudWatch Agent on AWS EC2 instances.
 
 Requirements
@@ -84,20 +83,14 @@ Example JSON
 
 ```
 
-Dependencies
-------------
-
-None
-
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+```yml
     - hosts: cloudwatch-servers
       roles:
          - role: bngsudheer.aws-cloudwatch-agent
-
+```
 
 
 License
