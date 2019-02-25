@@ -83,6 +83,8 @@ Example JSON
 
 ```
 
+For the list of metrics, see [AWS CloudWatchAgent Documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html)
+
 Example Playbook
 ----------------
 
