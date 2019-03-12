@@ -29,12 +29,12 @@
 
 - name: Install the package
   apt:
-    deb: "{{ cloudwatch_agent_download_directory}}/amazon-cloudwatch-agent.deb"
+    deb: "{{ cloudwatch_agent_download_directory }}/amazon-cloudwatch-agent.deb"
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install the package
   yum:
-    name: "{{ cloudwatch_agent_download_directory}}/amazon-cloudwatch-agent.rpm"
+    name: "{{ cloudwatch_agent_download_directory }}/amazon-cloudwatch-agent.rpm"
   when: ansible_distribution == 'CentOS'
 
 - name: CloudWatchAgent configuration
