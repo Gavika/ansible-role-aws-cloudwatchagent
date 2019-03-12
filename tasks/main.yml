@@ -1,17 +1,22 @@
 ---
 # Prerequisites. Attach role to EC2 instance with cloudwatch permission to
 # Support Ubuntu, Debian, CentOS, Amazon Linux 2
+
+- name: Setup for Ubuntu
+  include_tasks: "ubuntu.yml"
+  when: ansible_distribution == 'Ubuntu'
+
+
+- name: Setup for CentOS
+  include_tasks: "centos.yml"
+  when: ansible_distribution == 'CentOS'
+
 - name: Directory to store downloaded CloudWatchAgent binary package
   file:
     path: "{{ cloudwatch_agent_download_directory }}"
     state: directory
     owner: "{{ cloudwatch_agent_username }}"
     group: "{{ cloudwatch_agent_username }}"
-
-- name: Determine downlod URL based on Linux distribution
-  set_fact:
-    cloudwatch_agent_download_url: https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
-  when: ansible_distribution == 'Ubuntu'
 
 # Do this based on operating system
 - name: Download CloudWatchAgent
@@ -26,6 +31,11 @@
   apt:
     deb: "{{ cloudwatch_agent_download_directory}}/amazon-cloudwatch-agent.deb"
   when: ansible_distribution == 'Ubuntu'
+
+- name: Install the package
+  yum:
+    name: "{{ cloudwatch_agent_download_directory}}/amazon-cloudwatch-agent.rpm"
+  when: ansible_distribution == 'CentOS'
 
 - name: CloudWatchAgent configuration
   template:

@@ -1,6 +1,6 @@
 Warning
 ==========
-This is a work-in-progress alpha stage role.
+This is a work-in-progress beta stage role. Currently, tested on Ubuntu 18.04 and CentOS 7 on AWS EC2.
 
 Ansible Role CloudWatch Agent
 =========
