@@ -53,8 +53,8 @@ galaxy_info:
         - 7
     - name: Ubuntu
       versions:
-        - Xenial Xerus
-        - Bionic Beaver
+        - Xenial
+        - Bionic
 
   galaxy_tags:
     - AWSCloudWatchAgent
