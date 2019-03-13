@@ -10,6 +10,7 @@ Requirements
 ------------
 
 * AWS EC2 instance must have an IAM role that has policies to run AWS CloudWatch Agent.
+* Create the file aws-cw-config.json in a path where Ansible can find it. Within this file, save your AWS CloudWatchAgent configuration in JSON format.
 
 Role Variables
 --------------
@@ -21,7 +22,7 @@ Role Variables
 | cloudwatch_agent_download_directory | | The location where the AWS CloudWatch Agent software has to be downloaded to.| Yes |
 | cloudwatch_agent_download_url | | The URL from which Amazon CloudWatchAgent must be downloaded. This is automatically set by the role. But you can override it | No |
 
-Example JSON
+Example JSON file: aws-cw-config.json
 -------------
 ```json
 
