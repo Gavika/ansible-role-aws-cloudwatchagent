@@ -2,10 +2,10 @@
   set_fact:
     cloudwatch_agent_download_url: https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
 
-- name: Designate downlod directory
-  set_fact:
-    cloudwatch_agent_download_directory: /home/ubuntu/Downloads
-
-- name: Designate download directory username
-  set_fact:
-    cloudwatch_agent_username: ubuntu
+# - name: Designate downlod directory
+#   set_fact:
+#     cloudwatch_agent_download_directory: /home/ubuntu/Downloads
+#
+# - name: Designate download directory username
+#   set_fact:
+#     cloudwatch_agent_username: ubuntu

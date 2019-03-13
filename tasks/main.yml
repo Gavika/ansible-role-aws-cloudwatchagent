@@ -6,10 +6,17 @@
   include_tasks: "ubuntu.yml"
   when: ansible_distribution == 'Ubuntu'
 
-
 - name: Setup for CentOS
   include_tasks: "centos.yml"
   when: ansible_distribution == 'CentOS'
+
+- name: Designate downlod directory
+  set_fact:
+    cloudwatch_agent_download_directory: "/home/{{ cloudwatch_agent_username }}/Downloads"
+
+- name: Designate download directory username
+  set_fact:
+    cloudwatch_agent_username: "{{ cloudwatch_agent_username }}"
 
 - name: Directory to store downloaded CloudWatchAgent binary package
   file:
@@ -18,7 +25,6 @@
     owner: "{{ cloudwatch_agent_username }}"
     group: "{{ cloudwatch_agent_username }}"
 
-# Do this based on operating system
 - name: Download CloudWatchAgent
   get_url:
     url: "{{ cloudwatch_agent_download_url }}"
@@ -39,7 +45,6 @@
 
 - name: CloudWatchAgent configuration
   template:
-    # src: opt/aws/amazon-cloudwatch-agent/bin/cloudwatch.conf.json
     src: aws-cw-config.json
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
 
