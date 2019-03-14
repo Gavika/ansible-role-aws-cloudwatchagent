@@ -4,7 +4,7 @@
 
 # - name: Designate downlod directory
 #   set_fact:
-#     cloudwatch_agent_download_directory: /home/ubuntu/Downloads
+#     aws_cloudwatch_agent_download_directory: /home/ubuntu/Downloads
 #
 # - name: Designate download directory username
 #   set_fact:
