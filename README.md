@@ -21,6 +21,7 @@ Role Variables
 | cloudwatch_agent_username |  | The administrative user that should be the owner of the downloaded files. Typically same as remote_user. On Ubuntu it maybe ubuntu and CentOS it may be centos and Amazon Linux it may be ec2-user. | Yes |
 | cloudwatch_agent_download_directory | | The location where the AWS CloudWatch Agent software has to be downloaded to.| Yes |
 | cloudwatch_agent_download_url | | The URL from which Amazon CloudWatchAgent must be downloaded. This is automatically set by the role. But you can override it | No |
+| aws_cloudwatch_agent_mode | ec2 | The AWS CloudWatch Agent mode. Can be one of `ec2`, `onPremise` and `auto` | No | 
 
 Example JSON file: aws-cw-config.json
 -------------
