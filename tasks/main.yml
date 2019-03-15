@@ -49,7 +49,11 @@
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
 
 - name: Start the CloudWatchAgent
-  command: "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m {{ aws_cloudwatch_agent_mode }} -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s"
+  command: >
+    "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl
+    -a fetch-config
+    -m {{ aws_cloudwatch_agent_mode }}
+    -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s"
   args:
     creates: /opt/aws/.ansible-creates-start-CloudWatchAgent
   notify:
