@@ -19,6 +19,12 @@
     owner: "{{ aws_cloudwatch_agent_username }}"
     group: "{{ aws_cloudwatch_agent_username }}"
 
+
+- name: Stat AWS CloudWatchAgent downloaded file
+  stat:
+    path: "{{ downloaded_file }}"
+  register: stat_downloaded_file
+
 - name: Download CloudWatchAgent
   get_url:
     url: "{{ aws_cloudwatch_agent_download_url }}"
@@ -26,6 +32,7 @@
     dest: "{{ aws_cloudwatch_agent_download_directory }}"
     owner: "{{ aws_cloudwatch_agent_username }}"
     group: "{{ aws_cloudwatch_agent_username }}"
+  when: not stat_downloaded_file.stat.exists
 
 - name: Install the package via apt
   apt:
