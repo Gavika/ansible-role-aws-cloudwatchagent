@@ -10,7 +10,7 @@
 - name: Designate downlod directory
   set_fact:
     aws_cloudwatch_agent_download_directory: "/home/{{ aws_cloudwatch_agent_username }}/Downloads"
-  when: aws_cloudwatch_agent_download_directory == ""
+  when: not aws_cloudwatch_agent_download_directory
 
 - name: Ensure directory to store downloaded CloudWatchAgent binary package exists
   file:
@@ -42,12 +42,6 @@
     src: aws-cw-config.json
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
   register: aws_cloudwatch_agent_configuration
-
-- name: Set the -s switch
-  set_fact:
-    aws_cloudwatch_agent_start_switch_value: "-s"
-  when: aws_cloudwatch_agent_configuration.changed or aws_cloudwatch_agent_force_restart == true
-
-- name: Start the CloudWatchAgent
-  command: "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m {{ aws_cloudwatch_agent_mode }} -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json {{ aws_cloudwatch_agent_start_switch_value }}"
-  when: aws_cloudwatch_agent_configuration.changed or aws_cloudwatch_agent_force_restart == true
+  notify:
+    - Set the -s switch
+    - Start the CloudWatchAgent

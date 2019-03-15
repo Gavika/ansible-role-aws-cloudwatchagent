@@ -6,4 +6,4 @@
 - name: Determine user
   set_fact:
     aws_cloudwatch_agent_username: centos
-  when: aws_cloudwatch_agent_username == ""
+  when: not aws_cloudwatch_agent_username

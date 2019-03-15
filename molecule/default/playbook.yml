@@ -1,5 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    - aws_cloudwatch_agent_download_directory: /tmp/downloads/
+    - aws_cloudwatch_agent_username: root
   roles:
     - role: ansible-role-aws-cloudwatchagent
