@@ -1,0 +1,26 @@
+---
+sudo: required
+language: python
+services:
+  - docker
+env:
+  global:
+    - access_key_id:
+        secure: "bM4/HlivfnL017Qm9W+9QwHqEjmFqG2Wl5UjCcOJ7fOQCVh+5Si3/mZYwED0Egvw4VZkeGRdsaJk+y8K89BMibbjSezbEnMi38Qz9lp19utIfcU1Of5Ud2dwoq4ZogEaTGgg6yJvJz0awEcuTR1b5pRV1qxgAAytiSiEeTGw7M4+UmtVMLsgvHRVAkdNYyBe2f8QIQ1eDD4pIueI8e4SMJyLqoseGZFMwi+Ygt2KvFFog88EbxSyx+uZZG+xXqQC8l2jxvfx6nzzEcQQuO4Zy3uLUm/unXJsGxlcUE3GSsQ/TxWJMq/MojgtgoSfVKac2NGwPVSotvDiqOm/0TGFkSAJBlYMxwgKf35XnHa0gP13uqTYQKQJ2vxmLJkEhIwvLnHTk6QtX9QLgE4JXHrW9SWmzAqh2g+OtaUq4wj/1gFHXwx4tIzGAS9XHaNs2s9GDI94MFQ9bsGkgWH2L0DPnqOFEAZbh9ZMIYisRKCEBTYZrB3h2FABubfF/RGw6WOou2s1GgbmfH7PSK4PYzARdxGI9NOMhhjqOX3pB08xQylE8I0PTW7ZFGy+9bK2xpsSP+Dj5f6V2o6TY43XenLuY1jzkQ6dPZLVGqF2X64vkQH1zs6F3giNnEwFxeNYMYiyrov43Z9qeHaSZK6YEJvR7S/rnzBSwNBD7o34x03Wc+0="
+    - secret_key:
+        secure: "vUDuPbljC2xZVIiEN6Fcu/bNO5RRo9bch0vT/wNQMLxfIXBXU03YdSbZVI4Ql/3or5zwc76AjZ4KWwytzxTBN18FWjV3YYQOy8UskU/Yo9L1KXyvbst7jQkYC1b2l7K9MJ/2F3ozF6KlFL47uPOOfq29w3pGOrbx4G8OX0O3QvgVshkyraCMg41lmiwWMvMroSqqG8pXkDEWsY8gIWwbV8DP3xUctPx03JKR730wmU3MGdNvQloJ21Pwe2EtukeX9Hv1Rdc0XoXJx2orVoOYU6eofjCxA24Bk71uenOofEy00+pkuJ5MkBJhejrobV08oaJqrfVlCNeVUz46MXyFRWG6fjnxC7Updd0906PPR3OdZlrGVjvlJeRJGt3JFlH0dyRmpDd/n2xLJCEKwFPMNJIRyOvO61ocNHvK+FtfdraYw/HNEvH95D/gWqGjgoZlMRWAZzIwjIf2AQwAmqfpK0KLWwvfKJQR1/CyLug4rydCnINbFw1B2zoyMhoM1ysm5Dl3x/1Nixv+5xlNJfZpddsKIWeQNcGqG6xAz9CyjIswXTr68GcwZC8PWwH+O5TyfAHCJu5QBGSj5Adq8gC5Lw3P2eBjt7gidabSk77oX13oB8paHJYr9T5+UsUVDHurha4lAZWU9+BTlnIUeGI2ns6AfMcrhIqcj60YbbeV4OE="
+
+
+install:
+  - pip install molecule
+  - pip install docker
+
+branches:
+  only:
+    - master
+
+script:
+  - molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
