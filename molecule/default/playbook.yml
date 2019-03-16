@@ -4,6 +4,7 @@
   vars:
     - aws_cloudwatch_agent_download_directory: /tmp/downloads/
     - aws_cloudwatch_agent_username: root
+    - aws_cloudwatch_agent_mode: onPremise
   pre_tasks:
     - name: fetch the AWS access key ID from local environment variable
       set_fact:
