@@ -162,6 +162,10 @@ Example Playbook
 ```
 
 
+Continuous Integration
+-----------------------
+This Github project uses TravisCI for continuous integration. AWS secrets are used in the Travis environment file. Therefore, CI builds are not available for pull requests. However, you can run molecule tests locally.
+
 License
 -------
 
