@@ -158,7 +158,7 @@ Example Playbook
 ```yml
     - hosts: cloudwatch-servers
       roles:
-         - role: bngsudheer.aws-cloudwatch-agent
+         - role: Gavika.aws-cloudwatch-agent
 ```
 
 
@@ -177,4 +177,7 @@ Author Information
 Sudheer Satyanarayana
 * Blog: https://www.techchorus.net
 * Twitter: https://www.twitter.com/bngsudheer
-* Work: https://www.gavika.com
+
+
+Gavika
+* https://www.gavika.com
