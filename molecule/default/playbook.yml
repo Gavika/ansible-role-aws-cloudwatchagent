@@ -6,6 +6,9 @@
     - aws_cloudwatch_agent_username: root
     - aws_cloudwatch_agent_mode: onPremise
   pre_tasks:
+    - name: Install initscripts. AWS CloudWatchAgent uses service command.
+      yum:
+        name: initscripts
     - name: fetch the AWS access key ID from local environment variable
       set_fact:
         aws_access_key_id: "{{ lookup('env', 'ANSIBLE_CW_MOL_TEST_AWS_KEY_ID') }}"
