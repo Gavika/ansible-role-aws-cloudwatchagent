@@ -1,6 +1,6 @@
-Ansible Role CloudWatch Agent
+Ansible Role: AWS CloudWatch Agent
 =========
-This Ansible role installs and configures AWS CloudWatch Agent on AWS EC2 instances.
+This Ansible role installs and configures AWS CloudWatch Agent on AWS EC2 instances and on-premise servers.
 
 Requirements
 ------------
