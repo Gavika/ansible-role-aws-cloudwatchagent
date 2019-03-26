@@ -19,7 +19,6 @@
     owner: "{{ aws_cloudwatch_agent_username }}"
     group: "{{ aws_cloudwatch_agent_username }}"
 
-
 - name: Stat AWS CloudWatchAgent downloaded file
   stat:
     path: "{{ downloaded_file }}"
