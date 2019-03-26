@@ -17,6 +17,6 @@ branches:
 
 script:
   - molecule test
-
+  - molecule test --scenario-name=ubuntu_on_premise
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
