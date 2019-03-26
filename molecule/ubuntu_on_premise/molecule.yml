@@ -10,14 +10,13 @@ lint:
   name: yamllint
 platforms:
   - name: instance
-    image: geerlingguy/docker-ubuntu1804-ansible
+    image: solita/ubuntu-systemd:18.04
     privileged: true
     capabilities:
       - SYS_ADMIN
     volume_mounts:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     command: "/sbin/init"
-    pre_build_image: true
 
 provisioner:
   name: ansible
