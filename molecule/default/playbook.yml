@@ -36,4 +36,4 @@
         src: aws-credentials
         dest: /root/.aws/credentials
   roles:
-    - role: ansible-role-aws-cloudwatchagent
+    - role: aws-cloudwatchagent
