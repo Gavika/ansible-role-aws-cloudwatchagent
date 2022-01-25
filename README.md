@@ -8,7 +8,7 @@ Requirements
 * An AWS EC2 instance or an on-premise Linux server
 * If using AWS EC2 instance, the instance must have an IAM role attached that has policies to run AWS CloudWatch Agent. Consider using the AWS provided policy - CloudWatchAgentServerPolicy.
 * If using on-premise server, configure /root/.aws/credentials and /root/.aws/config.
-* Create the file `aws-cw-config.json` in a path where Ansible can find it. Within this file, save your AWS CloudWatchAgent configuration in JSON format.
+* Provide the YAML variable `aws_cloudwatch_agent_config`. This will be converted into JSON. See defaults/main.yml for a basic configuration.
 
 Role Variables
 --------------
@@ -22,121 +22,28 @@ Role Variables
 
 Example JSON file: aws-cw-config.json
 -------------
-```json
+```yaml
 
-{
-	"metrics": {
-		"append_dimensions": {
-			"AutoScalingGroupName": "${aws:AutoScalingGroupName}",
-			"ImageId": "${aws:ImageId}",
-			"InstanceId": "${aws:InstanceId}",
-			"InstanceType": "${aws:InstanceType}"
-		},
-		"metrics_collected": {
-			"cpu": {
-				"measurement": [
-					"cpu_usage_idle",
-					"cpu_usage_iowait",
-					"cpu_usage_user",
-					"cpu_usage_system"
-				],
-				"metrics_collection_interval": 300,
-				"resources": [
-					"*"
-				],
-				"totalcpu": false
-			},
-			"disk": {
-				"measurement": [
-					"used_percent",
-					"inodes_free"
-				],
-				"metrics_collection_interval": 300,
-				"resources": [
-					"*"
-				]
-			},
-			"diskio": {
-				"measurement": [
-					"io_time"
-				],
-				"metrics_collection_interval": 300,
-				"resources": [
-					"*"
-				]
-			},
-			"mem": {
-				"measurement": [
-					"mem_used_percent"
-				],
-				"metrics_collection_interval": 300
-			},
-			"swap": {
-				"measurement": [
-					"swap_used_percent"
-				],
-				"metrics_collection_interval": 300
-			}
-		}
-	}
-}
-
+agent:
+    metrics_collection_interval: 60
+    run_as_user: "cwagent"
+metrics:
+    namespace: "Gavika"
+    append_dimensions:
+      InstanceId: "${aws:InstanceId}"
+    metrics_collected:
+      disk:
+        measurement:
+          - used_percent
+        metrics_collection_interval: 60
+        resources:
+          - "*"
+      mem:
+        measurement:
+          - mem_used_percent
+        metrics_collection_interval: 60
 ```
 
-Example JSON for onPremise server:
-```json
-{
-        "metrics": {
-                "namespace": "my_custom_namespace",
-                "metrics_collected": {
-                        "cpu": {
-                                "measurement": [
-                                        "cpu_usage_idle",
-                                        "cpu_usage_iowait",
-                                        "cpu_usage_user",
-                                        "cpu_usage_system"
-                                ],
-                                "metrics_collection_interval": 360,
-                                "resources": [
-                                        "*"
-                                ],
-                                "totalcpu": false
-                        },
-                        "disk": {
-                                "measurement": [
-                                        "used_percent",
-                                        "inodes_free"
-                                ],
-                                "metrics_collection_interval": 360,
-                                "resources": [
-                                        "*"
-                                ]
-                        },
-                        "diskio": {
-                                "measurement": [
-                                        "io_time"
-                                ],
-                                "metrics_collection_interval": 360,
-                                "resources": [
-                                        "*"
-                                ]
-                        },
-                        "mem": {
-                                "measurement": [
-                                        "mem_used_percent"
-                                ],
-                                "metrics_collection_interval": 360
-                        },
-                        "swap": {
-                                "measurement": [
-                                        "swap_used_percent"
-                                ],
-                                "metrics_collection_interval": 360
-                        }
-                }
-        }
-}
-```
 
 Example /root/.aws/credentials for on-premise server:
 ```
@@ -165,14 +72,12 @@ Example Playbook
 
 Continuous Integration
 -----------------------
-This Github project uses TravisCI for continuous integration. AWS secrets are
-used in the Travis environment file. Therefore, CI builds are not available for
-pull requests. However, you can run molecule tests locally.
+You can execute molecule tests locally.
 
 License
 -------
 
-BSD
+Apache2
 
 Author Information
 ------------------

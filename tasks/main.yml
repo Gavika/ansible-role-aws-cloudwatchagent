@@ -27,7 +27,6 @@
 - name: Download CloudWatchAgent
   get_url:
     url: "{{ aws_cloudwatch_agent_download_url }}"
-    remote_src: true
     dest: "{{ aws_cloudwatch_agent_download_directory }}"
     owner: "{{ aws_cloudwatch_agent_username }}"
     group: "{{ aws_cloudwatch_agent_username }}"
@@ -45,7 +44,7 @@
 
 - name: CloudWatchAgent configuration
   template:
-    src: aws-cw-config.json
+    src: opt/aws/amazon-cloudwatch-agent/bin/config.json
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
   register: aws_cloudwatch_agent_configuration
   notify:

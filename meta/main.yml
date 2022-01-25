@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Sudheera Satyanarayana
-  description: System Administrator
+  description: Install and configure AWS CloudWatch Agent
   company: Gavika Information Technologies Pvt. Ltd.
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -15,9 +15,9 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (BSD)
+  license: license Apache 2
 
-  min_ansible_version: 2.4
+  min_ansible_version: 2.9
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
@@ -51,10 +51,12 @@ galaxy_info:
     - name: EL
       versions:
         - 7
+        - 8
     - name: Ubuntu
       versions:
         - Xenial
         - Bionic
+        - Focal
 
   galaxy_tags:
     - awscloudwatchagent
