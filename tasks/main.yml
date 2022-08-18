@@ -50,3 +50,12 @@
   notify:
     - Set the -s switch
     - Start the CloudWatchAgent
+
+- name: Force start the CloudWatchAgent
+  command: >-
+    /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl
+    -a fetch-config
+    -m {{ aws_cloudwatch_agent_mode }}
+    -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json
+    -s
+  when: aws_cloudwatch_agent_force_start|bool

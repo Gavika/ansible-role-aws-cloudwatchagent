@@ -7,6 +7,8 @@ aws_cloudwatch_agent_mode: ec2
 aws_cloudwatch_agent_start_switch_value: ""
 aws_cloudwatch_agent_force_restart: false
 
+aws_cloudwatch_agent_force_start: false
+
 aws_cloudwatch_agent_config:
   agent:
     metrics_collection_interval: 60
